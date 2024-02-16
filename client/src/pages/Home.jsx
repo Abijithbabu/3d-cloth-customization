@@ -22,7 +22,7 @@ const Home = () => {
                         <img src='./threejs.png' alt='logo' className='w-8 h-8 object-contain' />
                     </motion.header>
                     <motion.div className='home-content' {...headContainerAnimation}>
-                        <h1 className='head-text'>
+                        <h1 className='head-text md'>
                             LET'S <br className='xl:block hidden' /> DO IT.
                         </h1>
                     </motion.div>
