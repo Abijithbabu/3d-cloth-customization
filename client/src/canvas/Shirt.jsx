@@ -19,7 +19,7 @@ const Shirt = () => {
     const stateString = JSON.stringify(snap)
 
     return (
-        <group>
+        <group key={stateString}>
             <mesh castShadow geometry={nodes.T_Shirt_male.geometry}
                 material={materials.lambert1}
                 material-roughness={1}
@@ -29,8 +29,19 @@ const Shirt = () => {
                         position={[0, 0, 0]}
                         rotation={[0, 0, 0]}
                         scale={0.15}
+                        map={fullTexture}
+                        // map-anisotropy={16}
+                        // depthTest={false}
+                        // depthWrite={true}
+                    />
+                )}
+                {snap.isLogoTexture && (
+                    <Decal
+                        position={[0, 0.04, 0.15]}
+                        rotation={[0, 0, 0]}
+                        scale={0.15}
                         map={logoTexture}
-                        map-anisotropy={16}
+                        // map-anisotropy={16}
                         depthTest={false}
                         depthWrite={true}
                     />
