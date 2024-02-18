@@ -24,42 +24,53 @@ const Customizer = () => {
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return<ColorPicker/>
+        return <ColorPicker />
       case 'filepicker':
-        return <FilePicker file={file} setFile={setFile}/>
+        return <FilePicker file={file} setFile={setFile} readFile={readFile} />
       case 'aipicker':
-        return <AIPicker/>
+        return <AIPicker />
       default:
         return null;
     }
   }
 
-  const handleDecals = (type, result) =>{
-    const decalTypes = DecalTypes[type]
+  const handleDecals = (type, result) => {
+    const decalType = DecalTypes[type]
 
-    state[decalTypes.stateProperty] = result
-    if(!activeFilterTab[decalTypes.filterTab]) {
+    state[decalType.stateProperty] = result
+    if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
     }
   }
 
-  const handleActiveFilterTab = () => {
-    switch (activeFilterTab) {
-      case value:
-        
+  const handleActiveFilterTab = (tabName) => {
+    switch (tabName) {
+      case 'logoShirt':
+        state.isLogoTexture = !activeEditorTab[tabName]
         break;
-    
+      case 'stylishShirt':
+        state.isFullTexture = !activeFilterTab[tabName]
       default:
-        break;
+        state.isLogoTexture = true
+        state.isFullTexture = false
     }
+
+    //after setting the state, activFilterTab is updated
+
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName]
+      }
+    })
   }
 
   const readFile = (type) => {
     reader(file)
-    .then((result) => {
-      handleDecals(type,result)
-      setActiveEditorTab('')
-    })
+      .then((result) => {
+        handleDecals(type, result)
+        setActiveEditorTab('')
+      })
   }
 
   return (
@@ -89,8 +100,8 @@ const Customizer = () => {
                 key={tab.name}
                 tab={tab}
                 isFilterTab
-                isActive=''
-                handleClick={() => { }}
+                isActiveTab={activeFilterTab[tab.name]}
+                handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
 

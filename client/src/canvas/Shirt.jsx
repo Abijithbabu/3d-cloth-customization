@@ -28,7 +28,7 @@ const Shirt = () => {
                     <Decal
                         position={[0, 0, 0]}
                         rotation={[0, 0, 0]}
-                        scale={0.15}
+                        scale={1}
                         map={fullTexture}
                         // map-anisotropy={16}
                         // depthTest={false}
