@@ -1,29 +1,42 @@
 import { swatch, fileIcon, ai, logoShirt, stylishShirt } from "../assets";
+import { TextureOne, TextureTwo, TextureThree } from '../assets'
 
 export const EditorTabs = [
+  // {
+  //   name: "colorpicker",
+  //   icon: swatch,
+  // },
+  // {
+  //   name: "filepicker",
+  //   icon: fileIcon,
+  // },
+  // {
+  //   name: "aipicker",
+  //   icon: ai,
+  // },
   {
-    name: "colorpicker",
-    icon: swatch,
+    name: "textureOne",
+    icon: TextureTwo,
   },
   {
-    name: "filepicker",
-    icon: fileIcon,
+    name: "textureTwo",
+    icon: TextureThree,
   },
   {
-    name: "aipicker",
-    icon: ai,
-  },
+    name: "textureThree",
+    icon: TextureOne
+  }
 ];
 
 export const FilterTabs = [
-  {
-    name: "logoShirt",
-    icon: logoShirt,
-  },
-  {
-    name: "stylishShirt",
-    icon: stylishShirt,
-  },
+  // {
+  //   name: "logoShirt",
+  //   icon: logoShirt,
+  // },
+  // {
+  //   name: "stylishShirt",
+  //   icon: stylishShirt,
+  // },
 ];
 
 export const DecalTypes = {

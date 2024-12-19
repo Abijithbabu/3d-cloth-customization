@@ -4,11 +4,14 @@ import { Environment, Center } from '@react-three/drei'
 import Backdrop from './Backdrop'
 import Shirt from './Shirt'
 import CameraRig from './CameraRig'
+import { ShirtModel } from './Shirt1'
+import { Model } from './NewShirt'
+import { Shirt3 } from './Shirt3'
 // import { Shirt } from './Shirt'
 // import { Backdrop } from './Backdrop'
 // import { CameraRig } from './CameraRig'
 
-const CanvasModel = () => {
+const CanvasModel = ({index}) => {
   return (
     <Canvas
       shadows 
@@ -21,7 +24,10 @@ const CanvasModel = () => {
       <CameraRig>
         <Backdrop />
         <Center>
-          <Shirt />
+          {/* <Shirt /> */}
+          {/* <Model/> */}
+          {/* <ShirtModel/> */}
+          <Shirt3 index={index}/>
         </Center>
       </CameraRig>
     </Canvas>

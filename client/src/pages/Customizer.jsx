@@ -9,7 +9,7 @@ import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants'
 import { fadeAnimation, slideAnimation } from '../config/motion'
 import { CustomButton, AIPicker, ColorPicker, FilePicker, Tab, } from '../components'
 
-const Customizer = () => {
+const Customizer = ({ index, dispatch }) => {
   const snap = useSnapshot(state)
   const [file, setFile] = useState("")
   const [prompt, setPrompt] = useState('')
@@ -26,22 +26,28 @@ const Customizer = () => {
       case "colorpicker":
         return <ColorPicker />
       case 'filepicker':
-        return <FilePicker 
-        file={file} 
-        setFile={setFile} 
-        readFile={readFile} />
+        return <FilePicker
+          file={file}
+          setFile={setFile}
+          readFile={readFile} />
       case 'aipicker':
-        return <AIPicker 
-        prompt={prompt} 
-        setPrompt={setPrompt}
-        generatingImg={generatingImg}
-        handleSubmit={handleSubmit}/>
+        return <AIPicker
+          prompt={prompt}
+          setPrompt={setPrompt}
+          generatingImg={generatingImg}
+          handleSubmit={handleSubmit} />
+      case 'textureOne':
+        return setTexture = { textureOne }
+      case 'textureTwo':
+        return setTexture = { textureTwo }
+      case 'textureThree':
+        return setTexture = { textureTwo }
       default:
         return null;
     }
   }
   const handleSubmit = async (type) => {
-    if(!prompt) return alert("Please enter a prompt");
+    if (!prompt) return alert("Please enter a prompt");
 
     try {
       setGeneratingImg(true);
@@ -74,6 +80,9 @@ const Customizer = () => {
       handleActiveFilterTab(decalType.filterTab)
     }
   }
+  const handleTabClick = (index) => {
+    state.selectedTextureIndex = index; // Update global state
+  };
 
   const handleActiveFilterTab = (tabName) => {
     let isLogoTexture = state.isLogoTexture;
@@ -117,14 +126,15 @@ const Customizer = () => {
           <motion.div key="custom" {...slideAnimation('left')} className='absolute top-0 left-0 z-10'>
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
-                {EditorTabs.map((tab) => (
+                {EditorTabs.map((tab, idx) => (
                   <Tab
                     key={tab.name}
                     tab={tab}
-                    handleClick={() => setActiveEditorTab(tab.name)}
+                    handleClick={() => handleTabClick(idx)}
+                    className={`border-5 bg-white border-blue-300`}
                   />
                 ))}
-                {generateTabContent()}
+                {/* {generateTabContent()} */}
               </div>
             </div>
           </motion.div>
